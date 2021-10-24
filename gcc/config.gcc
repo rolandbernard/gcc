@@ -664,6 +664,13 @@ x86_cpus="generic intel"
 
 # Common parts for widely ported systems.
 case ${target} in
+*-*-someos*)
+  gas=yes
+  gnu_ld=yes
+  default_use_cxa_atexit=yes
+  use_gcc_stdint=wrap
+  native_system_header_dir=/include
+  ;;
 *-*-darwin*)
   tmake_file="t-darwin "
   tm_file="${tm_file} darwin.h"
@@ -2425,6 +2432,11 @@ microblaze*-*-elf)
 	cxx_target_objs="${cxx_target_objs} microblaze-c.o"
 	tmake_file="${tmake_file} microblaze/t-microblaze"
         ;;
+riscv*-*-someos*)
+	tm_file="elfos.h gnu-user.h someos.h glibc-stdint.h ${tm_file} riscv/elf.h"
+	tmake_file="${tmake_file} riscv/t-riscv"
+	gcc_cv_initfini_array=yes
+	;;
 riscv*-*-linux*)
 	tm_file="elfos.h gnu-user.h linux.h glibc-stdint.h ${tm_file} riscv/linux.h"
 	case "x${enable_multilib}" in
