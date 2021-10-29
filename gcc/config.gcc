@@ -2433,7 +2433,7 @@ microblaze*-*-elf)
 	tmake_file="${tmake_file} microblaze/t-microblaze"
         ;;
 riscv*-*-someos*)
-	tm_file="elfos.h gnu-user.h someos.h glibc-stdint.h ${tm_file} riscv/elf.h"
+	tm_file=" ${tm_file} elfos.h gnu-user.h glibc-stdint.h riscv/elf.h someos.h"
 	tmake_file="${tmake_file} riscv/t-riscv"
 	gcc_cv_initfini_array=yes
 	;;
